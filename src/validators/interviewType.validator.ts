@@ -9,6 +9,15 @@ export const dataValidator = [
   body('slug_fr').notEmpty().withMessage('French slug is required'),
 ];
 
+// Validation rules for creating/updating a question
+export const qDataVal = [
+  body('sentence').notEmpty().withMessage('Sentence is required'),
+  body('sentence_ar').notEmpty().withMessage('Arabic sentence is required'),
+  body('sentence_fr').notEmpty().withMessage('French sentence is required'),
+  body('interview_type_id')
+    .isInt()
+    .withMessage('Interview type ID must be a valid integer'),
+];
 // Validation rule for ID parameter
 export const idValidator = [
   param('id').isInt().withMessage('ID must be a valid integer'),

@@ -1,4 +1,5 @@
-import { body } from 'express-validator';
+import { body, validationResult } from 'express-validator';
+import { NextFunction, Request, Response } from 'express';
 
 // Validator for adding an admin
 export const addAdminValidators = [
@@ -20,3 +21,11 @@ export const loginValidators = [
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters long'),
 ];
+
+export const validate = (req: Request, res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};

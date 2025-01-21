@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { InterviewType } from '../models/InterviewType';
 import { Admin } from '../models/Admin';
 import { Company } from '../models/Company';
+import { Question } from '../models/Question';
 export const store = async (req: Request, res: Response) => {
   try {
     const { name, slug, slug_ar, slug_fr, auth_id } = req.body;
@@ -47,7 +48,9 @@ export const index = async (req: Request, res: Response) => {
 export const getById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const interviewType = await InterviewType.findByPk(id);
+    const interviewType = await InterviewType.findByPk(id, {
+      include: [{ model: Question, as: 'questions' }],
+    });
     if (!interviewType) {
       return res.status(404).json({ error: 'Interview type not found' });
     }

@@ -34,7 +34,8 @@ class InterviewType extends Model<
   declare company?: NonAttribute<Company>;
 
   declare static associations: {
-    admin: Association<InterviewType, Company>;
+    company: Association<InterviewType, Company>;
+    questions: Association<InterviewType, Question>;
   };
   // InterviewType.belongsTo(models.Company, {
   //   foreignKey: 'company_id',

@@ -3,6 +3,7 @@ import { sequelize } from './database/sequelize';
 
 import authRoutes from './routes/auth.routes';
 import interviewTypeRoute from './routes/interviewType.route';
+import questionRoute from './routes/question.route';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,6 +13,8 @@ app.use(express.json());
 // Use the auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/interview-types', interviewTypeRoute);
+app.use('/api/questions', questionRoute);
+
 app.get('/', async (req: Request, res: Response) => {
   // const newUser = await User.findByPk(1, {
   //   include: [User.associations.company],
