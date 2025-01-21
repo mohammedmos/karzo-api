@@ -5,6 +5,7 @@ import {
   HasOneCreateAssociationMixin,
   HasOneGetAssociationMixin,
   Model,
+  NonAttribute,
 } from 'sequelize';
 import { sequelize } from '../database/sequelize'; // Adjust the path as needed
 import bcrypt from 'bcrypt';
@@ -25,6 +26,8 @@ class Admin extends Model {
     delete values.password;
     return values;
   }
+  declare company?: NonAttribute<Company>;
+
   declare removeCompany: HasManyRemoveAssociationMixin<Company, number>;
   declare createCompany: HasOneCreateAssociationMixin<Company>;
   declare getCompany: HasOneGetAssociationMixin<Company>;

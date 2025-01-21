@@ -6,11 +6,13 @@ import {
   DataTypes,
   CreationOptional,
   NonAttribute,
+  Association,
 } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 
 import { Column, Table } from 'sequelize-typescript';
 import { User } from './User';
+import { Admin } from './Admin';
 @Table
 class Company extends Model<
   InferAttributes<Company>,
@@ -47,6 +49,10 @@ class Company extends Model<
   declare admin_id: ForeignKey<number>;
 
   declare owner?: NonAttribute<User>;
+
+  declare static associations: {
+    admin: Association<Company, Admin>;
+  };
 }
 Company.init(
   {
@@ -81,6 +87,7 @@ Company.init(
     modelName: 'Company', // Ensure the model name is set
   }
 );
+// Company.belongsTo(Admin, { foreignKey: 'admin_id', as: 'admin' });
 
 // Company.belongsTo(User, {
 //   foreignKey: 'user_id',

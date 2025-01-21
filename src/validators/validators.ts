@@ -2,7 +2,7 @@ import { body } from 'express-validator';
 
 // Validator for adding an admin
 export const addAdminValidators = [
-  body('name').notEmpty().withMessage('Name is required'),
+  body('username').notEmpty().withMessage('Username is required'),
   body('email').notEmpty().isEmail().withMessage('Invalid email address'),
   body('password')
     .notEmpty()

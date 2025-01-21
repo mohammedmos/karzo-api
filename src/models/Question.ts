@@ -54,12 +54,12 @@ Question.init(
     timestamps: true, // Enable timestamps (createdAt, updatedAt)
   }
 );
-Question.belongsTo(InterviewType, {
-  foreignKey: 'interview_type_id',
-  as: 'interviewType',
-});
-Question.hasMany(Interview, {
-  foreignKey: 'question_id',
-  as: 'interviews',
-});
+// Question.belongsTo(InterviewType, {
+//   foreignKey: 'interview_type_id',
+//   as: 'interviewType',
+// });
+// Question.hasMany(Interview, {
+//   foreignKey: 'question_id',
+//   as: 'interviews',
+// });
 export { Question };
