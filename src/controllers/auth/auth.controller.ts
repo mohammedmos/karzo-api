@@ -1,10 +1,15 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { Admin } from '../../models/Admin';
+import { validationResult } from 'express-validator';
 // import bcrypt from 'bcrypt';
 
 export const register = async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { username, email, password, companyEmail, companyName } = req.body;
 
   try {
     // Check if the admin already exists
@@ -20,7 +25,12 @@ export const register = async (req: Request, res: Response) => {
       email,
       password,
     });
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    await newAdmin?.createCompany({
+      name: companyName,
+      email: companyEmail,
+    });
     res
       .status(201)
       .json({ message: 'Admin registered successfully', admin: newAdmin });
@@ -30,6 +40,10 @@ export const register = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   const { email, password } = req.body;
   // console.log(email);
   // console.log(password);

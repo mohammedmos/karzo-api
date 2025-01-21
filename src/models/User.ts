@@ -1,20 +1,16 @@
 import {
-  Association,
   DataTypes,
-  HasManyRemoveAssociationMixin,
   Model,
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
-  HasOneCreateAssociationMixin,
   // HasManyGetAssociationsMixin,
-  HasOneGetAssociationMixin,
 } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 // import { InterviewType } from './InterviewType';
 // import { Question } from './Question';
 // import { Interview } from './Interview';
-import { Company } from './Company';
+// import { Company } from './Company';
 // import { HasOne } from 'sequelize-typescript';
 // import { Association } from 'sequelize-typescript';
 // import { Answer } from './Answer';
@@ -33,14 +29,6 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare createdAt: CreationOptional<Date> | null;
 
   declare updatedAt: CreationOptional<Date> | null;
-  declare removeCompany: HasManyRemoveAssociationMixin<Company, number>;
-  declare createCompany: HasOneCreateAssociationMixin<Company>;
-  declare getCompany: HasOneGetAssociationMixin<Company>;
-  // declare company?: NonAttribute<Company[]>; // Note this is optional since it's only populated when explicitly requested in code
-
-  declare static associations: {
-    company: Association<User, Company>;
-  };
 }
 // User.hasOne(Company, {
 //   foreignKey: 'user_id',
@@ -86,9 +74,5 @@ User.init(
     modelName: 'User',
   }
 );
-User.hasOne(Company, {
-  foreignKey: 'user_id',
-  as: 'company',
-});
 
 export { User };

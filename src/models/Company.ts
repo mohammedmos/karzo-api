@@ -44,7 +44,7 @@ class Company extends Model<
     type: DataTypes.INTEGER,
     allowNull: false,
   })
-  declare user_id: ForeignKey<number>;
+  declare admin_id: ForeignKey<number>;
 
   declare owner?: NonAttribute<User>;
 }
@@ -67,11 +67,11 @@ Company.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    user_id: {
+    admin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Users', // Name of the table, not the model
+        model: 'Admins', // Name of the table, not the model
         key: 'id',
       },
     },

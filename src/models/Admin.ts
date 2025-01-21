@@ -1,6 +1,14 @@
-import { DataTypes, Model } from 'sequelize';
+import {
+  Association,
+  DataTypes,
+  HasManyRemoveAssociationMixin,
+  HasOneCreateAssociationMixin,
+  HasOneGetAssociationMixin,
+  Model,
+} from 'sequelize';
 import { sequelize } from '../database/sequelize'; // Adjust the path as needed
 import bcrypt from 'bcrypt';
+import { Company } from './Company';
 
 class Admin extends Model {
   public id!: number;
@@ -17,6 +25,14 @@ class Admin extends Model {
     delete values.password;
     return values;
   }
+  declare removeCompany: HasManyRemoveAssociationMixin<Company, number>;
+  declare createCompany: HasOneCreateAssociationMixin<Company>;
+  declare getCompany: HasOneGetAssociationMixin<Company>;
+  // declare company?: NonAttribute<Company[]>; // Note this is optional since it's only populated when explicitly requested in code
+
+  declare static associations: {
+    company: Association<Admin, Company>;
+  };
 }
 
 Admin.init(
@@ -61,5 +77,9 @@ Admin.init(
     },
   }
 );
+Admin.hasOne(Company, {
+  foreignKey: 'admin_id',
+  as: 'company',
+});
 
 export { Admin };
