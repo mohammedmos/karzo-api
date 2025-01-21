@@ -1,17 +1,29 @@
 import express, { Request, Response } from 'express';
 import { sequelize } from './database/sequelize';
-import { User } from './models/User';
+
+import authRoutes from './routes/auth.routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
+// Middleware to parse JSON bodies
+app.use(express.json());
 
+// Use the auth routes
+app.use('/auth', authRoutes);
 app.get('/', async (req: Request, res: Response) => {
-  const newUser = await User.findByPk(1);
+  // const newUser = await User.findByPk(1, {
+  //   include: [User.associations.company],
+  // });
+  // const newUser = Admin.create({
+  //   username: 'admin',
+  //   email: 'admin@demo.com',
+  //   password: 'password',
+  // });
   // const enterprise = await newUser?.createCompany({
   //   name: 'Enterprise',
   //   email: 'enterprise',
   // });
-  res.send(newUser?.getCompany());
+  res.send('hello this is express');
 });
 async function testConnection() {
   try {
