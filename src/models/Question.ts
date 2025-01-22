@@ -1,19 +1,9 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  DataTypes,
-  ForeignKey,
-  CreationOptional,
-} from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, ForeignKey, CreationOptional } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import { InterviewType } from './InterviewType';
 import { Interview } from './Interview';
 
-class Question extends Model<
-  InferAttributes<Question>,
-  InferCreationAttributes<Question>
-> {
+class Question extends Model<InferAttributes<Question>, InferCreationAttributes<Question>> {
   declare id: CreationOptional<number>;
 
   declare sentence: string;
@@ -58,8 +48,8 @@ Question.init(
 //   foreignKey: 'interview_type_id',
 //   as: 'interviewType',
 // });
-// Question.hasMany(Interview, {
-//   foreignKey: 'question_id',
-//   as: 'interviews',
-// });
+Question.hasMany(Interview, {
+  foreignKey: 'question_id',
+  as: 'interviews',
+});
 export { Question };

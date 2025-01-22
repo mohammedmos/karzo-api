@@ -1,17 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import {
-  store,
-  getById,
-  index,
-  update,
-  destroy,
-} from '../controllers/question.controller';
-import {
-  qDataVal,
-  idValidator,
-  validate,
-} from '../validators/interviewType.validator';
+import { store, getById, index, update, destroy } from '../controllers/question.controller';
+import { qDataVal, idValidator, validate } from '../validators/interviewType.validator';
 import auth from '../middlewares/auth.middleware';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

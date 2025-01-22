@@ -3,7 +3,7 @@
 // import { InterviewType } from '../models/InterviewType'; // Adjust paths as needed
 // import { Question } from '../models/Question'; // Adjust paths as needed
 // import { Interview } from '../models/Interview'; // Adjust paths as needed
-// import { Answer } from '../models/Answer';
+// import { Response } from '../models/Response';
 // import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 //
 // const sequelizeConfig: SequelizeOptions = {
@@ -25,7 +25,7 @@
 //   InterviewType,
 //   Question,
 //   Interview,
-//   Answer,
+//   Response,
 // ]);
 //
 // // Set up associations
@@ -51,4 +51,4 @@
 // testConnection();
 //
 // // Export the Sequelize instance and models
-// export { sequelize, Company, User, InterviewType, Question, Interview, Answer };
+// export { sequelize, Company, User, InterviewType, Question, Interview, Response };

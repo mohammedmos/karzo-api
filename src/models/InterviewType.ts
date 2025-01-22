@@ -1,12 +1,4 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  DataTypes,
-  CreationOptional,
-  NonAttribute,
-  Association,
-} from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional, NonAttribute, Association } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import { Interview } from './Interview';
 import { Question } from './Question';
@@ -15,10 +7,7 @@ import { Question } from './Question';
 import { Company } from './Company';
 import { Column, Table } from 'sequelize-typescript';
 @Table
-class InterviewType extends Model<
-  InferAttributes<InterviewType>,
-  InferCreationAttributes<InterviewType>
-> {
+class InterviewType extends Model<InferAttributes<InterviewType>, InferCreationAttributes<InterviewType>> {
   @Column({
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -35,7 +24,7 @@ class InterviewType extends Model<
 
   declare static associations: {
     company: Association<InterviewType, Company>;
-    questions: Association<InterviewType, Question>;
+    questions: Association<InterviewType, Company>;
   };
   // InterviewType.belongsTo(models.Company, {
   //   foreignKey: 'company_id',

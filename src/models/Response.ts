@@ -1,11 +1,4 @@
-import {
-  Model,
-  InferAttributes,
-  InferCreationAttributes,
-  DataTypes,
-  ForeignKey,
-  CreationOptional,
-} from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, ForeignKey, CreationOptional } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import { User } from './User';
 import { InterviewType } from './InterviewType';
@@ -13,10 +6,7 @@ import { Question } from './Question';
 import { Interview } from './Interview';
 import { Company } from './Company';
 
-class Answer extends Model<
-  InferAttributes<Answer>,
-  InferCreationAttributes<Answer>
-> {
+class Response extends Model<InferAttributes<Response>, InferCreationAttributes<Response>> {
   declare id: CreationOptional<number>; // Auto-increment field
   declare question: string;
   declare answer: string;
@@ -28,16 +18,16 @@ class Answer extends Model<
     InterviewType: typeof InterviewType;
     Question: typeof Question;
     Interview: typeof Interview;
-    Answer: typeof Answer;
+    Answer: typeof Response;
   }) {
-    Answer.belongsTo(models.Interview, {
+    Response.belongsTo(models.Interview, {
       foreignKey: 'interview_id',
       as: 'interview',
     });
   }
 }
 
-Answer.init(
+Response.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -59,9 +49,9 @@ Answer.init(
   },
   {
     sequelize,
-    modelName: 'Answer',
+    modelName: 'Response',
     timestamps: true, // Enable timestamps (createdAt, updatedAt)
   }
 );
 
-export { Answer };
+export { Response };

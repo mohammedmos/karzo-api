@@ -1,5 +1,6 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+// eslint-disable-next-line no-undef
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Companies', {
@@ -7,16 +8,16 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       photo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -28,15 +29,16 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Companies');
-  }
+  },
 };
