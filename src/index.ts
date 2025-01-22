@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 const corsOptions = {
-  origin: 'https://karzo-api.ekkrili.com', // Allow only this origin
+  origin: 'https://guerzzo.vercel.app', // Allow only this origin
   methods: 'GET,POST,PUT,DELETE', // Allow specific HTTP methods
   allowedHeaders: 'Content-Type,Authorization', // Allow specific headers
 };
