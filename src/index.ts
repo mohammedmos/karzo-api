@@ -12,7 +12,13 @@ import path from 'path';
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://karzo-api.ekkrili.com', // Allow only this origin
+  methods: 'GET,POST,PUT,DELETE', // Allow specific HTTP methods
+  allowedHeaders: 'Content-Type,Authorization', // Allow specific headers
+};
+
+app.use(cors(corsOptions));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Use the auth routes
