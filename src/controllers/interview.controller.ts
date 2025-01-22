@@ -16,7 +16,10 @@ export const store = async (req: Request, res: Response) => {
       answer: item.response,
       interview_id: interview.id,
     }));
-    await Answer.bulkCreate(answersWithInterviewId, { transaction });
+    for (const element of answersWithInterviewId) {
+      await Answer.create(element, { transaction });
+    }
+
     const report = await Report.create(
       {
         overall_evaluation: overall_evaluation,

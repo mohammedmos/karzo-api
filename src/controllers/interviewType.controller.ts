@@ -1,8 +1,5 @@
 import { Request, Response } from 'express';
-import { InterviewType } from '../models/InterviewType';
-import { Admin } from '../models/Admin';
-import { Company } from '../models/Company';
-import { Question } from '../models/Question';
+import { Question, Company, Admin, InterviewType } from '../models';
 export const store = async (req: Request, res: Response) => {
   try {
     const { name, slug, slug_ar, slug_fr, auth_id } = req.body;
@@ -11,9 +8,7 @@ export const store = async (req: Request, res: Response) => {
     });
     const company = admin?.company;
     if (!company) {
-      return res
-        .status(404)
-        .json({ error: 'Company not found for the given Admin' });
+      return res.status(404).json({ error: 'Company not found for the given Admin' });
     }
 
     const interviewType = await InterviewType.create({

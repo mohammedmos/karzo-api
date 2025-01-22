@@ -8,7 +8,7 @@ import { Company } from './Company';
 
 class Response extends Model<InferAttributes<Response>, InferCreationAttributes<Response>> {
   declare id: CreationOptional<number>; // Auto-increment field
-  declare question: string;
+  declare question: Text;
   declare answer: string;
   declare interview_id: ForeignKey<number>;
 
@@ -35,11 +35,11 @@ Response.init(
       autoIncrement: true,
     },
     question: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('long'),
       allowNull: false,
     },
     answer: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('long'),
       allowNull: false,
     },
     interview_id: {

@@ -1,17 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import {
-  store,
-  index,
-  update,
-  getById,
-  destroy,
-} from '../controllers/interviewType.controller';
-import {
-  dataValidator,
-  idValidator,
-  validate,
-} from '../validators/interviewType.validator';
+import { store, index, update, getById, destroy } from '../controllers/interviewType.controller';
+import { dataValidator, idValidator, validate } from '../validators/interviewType.validator';
 import auth from '../middlewares/auth.middleware';
 
 // Create a new interview type
@@ -20,14 +10,12 @@ import auth from '../middlewares/auth.middleware';
 router.post('/', dataValidator, auth, validate, store);
 
 // Get all interview types
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-router.get('/', auth, index);
+router.get('/', index);
 
 // Get a single interview type by ID
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-router.get('/:id', [...idValidator], validate, auth, getById);
+router.get('/:id', [...idValidator], validate, getById);
 
 // Update an interview type by ID
 
