@@ -48,8 +48,8 @@ Question.init(
 //   foreignKey: 'interview_type_id',
 //   as: 'interviewType',
 // });
-Question.hasMany(Interview, {
-  foreignKey: 'question_id',
-  as: 'interviews',
-});
+// Question.hasMany(Interview, {
+//   foreignKey: 'question_id',
+//   as: 'interviews',
+// });
 export { Question };

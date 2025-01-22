@@ -43,3 +43,25 @@ export const store = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+// Get a single interview type by ID
+export const getById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const interview = await Interview.findByPk(id, {
+      include: [
+        { model: User, as: 'user' },
+        { model: Answer, as: 'responses' },
+        { model: Report, as: 'report' },
+      ],
+    });
+    if (!interview) {
+      return res.status(404).json({ error: 'Interview type not found' });
+    }
+    // console.log(interview);
+    res.status(200).json({ data: interview });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

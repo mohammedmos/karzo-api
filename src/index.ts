@@ -5,17 +5,22 @@ import authRoutes from './routes/auth.routes';
 import interviewTypeRoute from './routes/interviewType.route';
 import questionRoute from './routes/question.route';
 import interviewRoute from './routes/interview.route';
+import userRoute from './routes/user.route';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // Use the auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/interview-types', interviewTypeRoute);
 app.use('/api/questions', questionRoute);
 app.use('/api/interviews', interviewRoute);
+app.use('/api/users', userRoute);
 
 app.get('/', async (req: Request, res: Response) => {
   // const newUser = await User.findByPk(1, {
