@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "migrate": "npx sequelize-cli db:migrate "
   },
   "keywords": [],
   "author": "",
